@@ -45,10 +45,34 @@ class UserController extends Controller
 		);
 	}*/
 
+	public function constructArray($jsonStr)
+	{
+		return CJSON::decode($jsonStr);
+	}
+
 	public function constructLicense($model, $appId, $imei) 
 	{
+		$tmpKey = '-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQC19+3Zkg8ko4S7XeAjGl2ps8dEVGx2prFAAsq9OeNjvI4zbUG2
+iw7fvk02VZuilYyspB/MR1nMEWreVj21FdnN/szIlC/stptlNMtmkZ28jv8QVvls
+8O2Zp97qDxSWbYwZFT1nmQVK1uSZV7wMEldWTSlFcLuOXoFGGXndO9062QIDAQAB
+AoGASoBHkVyLdqS8Izo8GiMhVemVHBS0k5+L0nlSKEcbIiqAze1dii9E17ZCRoym
+O9qezdAkdK6BxVscNgt5GDrqAQvS6LmQ1KQfOF2mr3rNeCjz6RLl4ujl9mjwAikG
+HRWBev7Dz9q/YjKg4OaFTTT5HcgnuyLzO2DY8rKA1PM3gkECQQDlPtu0N4gZJe2/
+BSqEFwLLme+lQP8d1NNoICAP5U+GowUc885AMMWqOObOUVe/PzaSSObyAsRTht2H
+OCalqWh/AkEAyzSUXpThSShB6JQxDC52r+SS9342bEa6z3vSJ2gBfIZObxA25jHS
+F7pRh/vXpGXzcsV4fzIDGKz6tEPHfh3wpwJBANUwnrs7RWs1taKGWGKcz7Guh4nk
+JxyD9tKHxalitJFd+3xQU4eok7pYznQie3rUe5iRCY0Y+6E987gzhOVc5VsCQFNs
+4MT75on8ZyKvRHu1z7Bi7RuCy6EkYKmyMhNPldyj3yulwoQ7S//F1Jc5g8zQtmQW
+QmQmCjNlQQAlG4/hht0CQByUzQ2Vj9uB/RXMvPWtGimEENaAO5Q2wF5kWnoyfg8U
+8DjPPoFe0B9mWxAjPBCnI3UwW3P7B7TZKrAlf+GbtxE=
+-----END RSA PRIVATE KEY-----';
 		$productInfo=$model->products_record;
-		$content=CJSON::encode(array('appId'=>$appId,'imei'=>$imei,'productInfo'=>$productInfo));
+		// $productInfo='{"description":"aaaaaa","subProducts":[{"isConsumer":true,"price":1,"subId":"1","num":3,"description":"nnnnnn"},{"isConsumer":false,"price":1,"subId":"2","num":0,"description":"jjjjj"}]}'
+		$productArray=$this->constructArray($productInfo);
+		$pkgName=Application::model()->findByPk($appId)->package_name;
+		$licenseArray=array('appId'=>$appId,'packageName'=>$pkgName,'imei'=>$imei,'timeStamp'=>time(),'productInfo'=>$productArray);
+		$content=CJSON::encode($licenseArray);
 		$app = Application::model()->findByPk($appId);
 		if ($app === null)
 		{
@@ -56,9 +80,13 @@ class UserController extends Controller
 		} else 
 		{
 			$key = $app->private_key;
+			// $key = $tmpKey;
+			// $content = base64_encode($content);
+			// $content='hhhhhhhhhhhhhhhhh';
 			openssl_sign($content, $sign, $key, OPENSSL_ALGO_SHA1);
 			$sign=base64_encode($sign);
 			return CJSON::encode(array('signature'=>$sign, 'content'=>$content));
+			// return array('signature'=>$sign, 'content'=>$content);
 		}
 	}
 
@@ -77,8 +105,6 @@ class UserController extends Controller
 			_sendResponse(200, $responseStr);
 		}
 	}
-
-	
 
 	/**
 	 * Creates a new model.

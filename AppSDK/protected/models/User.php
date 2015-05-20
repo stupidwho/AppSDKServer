@@ -4,10 +4,10 @@
  * This is the model class for table "tbl_user".
  *
  * The followings are the available columns in table 'tbl_user':
+ * @property integer $id
  * @property string $imei
  * @property string $app_id
  * @property string $products_record
- * @property integer $id
  */
 class User extends CActiveRecord
 {
@@ -32,7 +32,7 @@ class User extends CActiveRecord
 			array('products_record', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('imei, app_id, products_record, id', 'safe', 'on'=>'search'),
+			array('id, imei, app_id, products_record', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,10 +53,10 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'imei' => 'Imei',
 			'app_id' => 'App',
 			'products_record' => 'Products Record',
-			'id' => 'ID',
 		);
 	}
 
@@ -78,10 +78,10 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('imei',$this->imei,true);
 		$criteria->compare('app_id',$this->app_id,true);
 		$criteria->compare('products_record',$this->products_record,true);
-		$criteria->compare('id',$this->id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

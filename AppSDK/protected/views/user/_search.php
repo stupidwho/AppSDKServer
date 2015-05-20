@@ -12,6 +12,11 @@
 )); ?>
 
 	<div class="row">
+		<?php echo $form->label($model,'id'); ?>
+		<?php echo $form->textField($model,'id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'imei'); ?>
 		<?php echo $form->textField($model,'imei',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
@@ -24,11 +29,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'products_record'); ?>
 		<?php echo $form->textArea($model,'products_record',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row buttons">

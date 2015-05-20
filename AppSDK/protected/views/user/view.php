@@ -21,9 +21,9 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
+		'id',
 		'imei',
 		'app_id',
 		'products_record',
-		'id',
 	),
 )); ?>

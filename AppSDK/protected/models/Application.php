@@ -28,7 +28,6 @@ class Application extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('package_name', 'required'),
 			array('package_name', 'length', 'max'=>1024),
 			array('private_key, public_key, products', 'safe'),
 			// The following rule is used by search().
