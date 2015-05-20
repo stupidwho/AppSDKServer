@@ -283,3 +283,36 @@ REQUEST_URI=/AppSDK/index.php?r=user/view&imei=865863020125972&app_id=1
 in /opt/lampp/htdocs/AppSDK/protected/controllers/response.php (14)
 in /opt/lampp/htdocs/AppSDK/protected/controllers/UserController.php (102)
 in /opt/lampp/htdocs/AppSDK/index.php (13)
+2015/05/20 11:04:31 [error] [php] Undefined variable: amout (/opt/lampp/htdocs/AppSDK/protected/controllers/PayController.php:22)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(286): PayController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/CController.php(265): PayController->runActionWithFilters()
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): PayController->run()
+#3 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /opt/lampp/htdocs/AppSDK/index.php(13): CWebApplication->run()
+REQUEST_URI=/AppSDK/index.php?r=pay/order
+in /opt/lampp/htdocs/AppSDK/protected/controllers/PayController.php (22)
+in /opt/lampp/htdocs/AppSDK/index.php (13)
+2015/05/20 11:04:36 [error] [php] Undefined variable: amout (/opt/lampp/htdocs/AppSDK/protected/controllers/PayController.php:22)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(286): PayController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/CController.php(265): PayController->runActionWithFilters()
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): PayController->run()
+#3 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /opt/lampp/htdocs/AppSDK/index.php(13): CWebApplication->run()
+REQUEST_URI=/AppSDK/index.php?r=pay/order
+in /opt/lampp/htdocs/AppSDK/protected/controllers/PayController.php (22)
+in /opt/lampp/htdocs/AppSDK/index.php (13)
+2015/05/20 11:05:00 [error] [php] Undefined variable: amout (/opt/lampp/htdocs/AppSDK/protected/controllers/PayController.php:22)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(286): PayController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/CController.php(265): PayController->runActionWithFilters()
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): PayController->run()
+#3 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /opt/lampp/htdocs/AppSDK/index.php(13): CWebApplication->run()
+REQUEST_URI=/AppSDK/index.php?r=pay/order
+in /opt/lampp/htdocs/AppSDK/protected/controllers/PayController.php (22)
+in /opt/lampp/htdocs/AppSDK/index.php (13)
