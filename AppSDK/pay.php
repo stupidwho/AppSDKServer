@@ -6,7 +6,7 @@
  * 该代码仅供学习和研究 Ping++ SDK 使用，只是提供一个参考。
 */
 
-require_once(dirname(__FILE__) . '/../init.php');
+require_once(dirname(__FILE__) . '/pingpp-php/init.php');
 $input_data = json_decode(file_get_contents('php://input'), true);
 if (empty($input_data['channel']) || empty($input_data['amount'])) {
     exit();
